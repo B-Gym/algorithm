@@ -3,7 +3,7 @@ package basic_algorithm;
 import java.util.*;
 
 /**
- * Max3 : 입력받은 3개의 값 중에서 최댓값을 구하는 프로그램
+ * MaxMin: 입력받은 2~4개의 값 혹은 정수 배열 내에 정수 중에서 최댓값을 구하는 프로그램
  */
 public class MaxMin {
     public static void main(String[] args) {
@@ -21,7 +21,6 @@ public class MaxMin {
 
         System.out.println("max(2, 4, 7, 3): " + max(2, 4, 7, 3));
         System.out.println("min(2, 4, 7, 3): " + min(2, 4, 7, 3));
-
     }
 
     static int max(int a, int b) {
