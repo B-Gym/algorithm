@@ -86,10 +86,34 @@ public class SeqSearch {
         System.out.printf("\n%d은 x[%d]에 있습니다.", key, idx);
     }
 
+    static int searchIdx(int[] arr, int key, int[] idx) {
+        int count = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == key) {
+                if (count >= idx.length) {
+                    int[] temp = new int[idx.length + 1];
+                    for (int j = 0; j < idx.length; j++) {
+                        temp[j] = idx[j];
+                    }
+                    idx = temp;
+                }
+                idx[count] = i;
+                count++;
+            }
+
+        }
+        // for (int num : idx) {
+        // System.out.println(num);
+        // }
+        return idx[0] == -1 ? 0 : idx.length;
+    }
+
     public static void main(String[] args) {
 
         int[] arr = { 6, 4, 3, 2, 1, 9, 8 };
-
         showSeqSearch(arr, 1);
+
+        int[] arr2 = { 1, 9, 2, 9, 4, 6, 7, 9 };
+        System.out.println(searchIdx(arr2, 9, new int[] { -1 }));
     }
 }
