@@ -42,36 +42,93 @@ public class BinSearch {
     static void showBinSearch(int[] arr, int key) {
         int pl = 0;
         int pr = arr.length - 1;
-
         int count = 0;
-        for (int i = 0; i <= count; i++) {
-            System.out.printf("%d|", i);
+        int idx = -1;
 
-            for (int k = 0; k < arr.length; k++) {
-                System.out.printf(" %d ", arr[k]);
-            }
-
-            for (int j = pl; j <= pr; j++) {
-                int pc = (pl + pr) / 2;
-                if (arr[pc] == key) {
-                }
-                if (arr[pc] < key) {
-                    pl = pc + 1;
-                } else {
-                    pr = pc - 1;
-                }
-                count++;
-            }
-            System.out.println();
+        System.out.print("  |");
+        for (int i = 0; i < arr.length; i++) {
+            System.out.printf(" %d ", i);
         }
+        System.out.println();
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print("----");
+        }
+        System.out.println();
+
+        for (int j = pl; j <= pr; j++) {
+            int pc = (pl + pr) / 2;
+
+            if (pc != 0) {
+                System.out.print(" |");
+                for (int k = 0; k < arr.length; k++) {
+                    if (k == pc) {
+                        System.out.print("+");
+                    } else if (k == pr) {
+                        System.out.print("  →");
+                    } else if (k == pl) {
+                        System.out.print("  ←  ");
+                    } else {
+                        System.out.print("   ");
+                    }
+                }
+                System.out.println();
+                System.out.printf("%d| ", pc);
+                for (int k = 0; k < arr.length; k++) {
+                    System.out.printf(" %d ", arr[k]);
+                }
+                System.out.println();
+            }
+
+            if (arr[pc] == key) {
+                idx = pc;
+                break;
+            }
+            if (arr[pc] < key) {
+                pl = pc + 1;
+            } else {
+                pr = pc - 1;
+            }
+
+        }
+
+        if (idx == -1) {
+            System.out.printf("\n%d은 x에 없습니다.", key);
+        } else
+            System.out.printf("\n%d은 x[%d]에 있습니다.", key, idx);
+
+    }
+
+    static int binSearchX(int[] arr, int key) {
+        int pl = 0;
+        int pr = arr.length - 1;
+
+        for (int i = pl; i <= pr; i++) {
+            int pc = (pl + pr) / 2;
+            if (arr[pc] == key) {
+                while (arr[pc] == key) {
+                    // System.out.println("test: " + pc);
+                    pc--;
+                }
+                return pc + 1;
+            }
+            if (arr[pc] < key) {
+                pl = pc + 1;
+            } else {
+                pr = pc - 1;
+            }
+        }
+        return -1;
     }
 
     public static void main(String[] args) {
-        int[] arr1 = { 1, 2, 3, 4, 5, 6, 7, 8 };
-        System.out.println(binSearch(arr1, 3));
-        System.out.println(binSearch(arr1, 9));
+        int[] arr1 = { 1, 2, 3, 5, 6, 8, 9 };
+        // System.out.println(binSearch(arr1, 3));
+        // System.out.println(binSearch(arr1, 9));
 
-        // showBinSearch(arr1, 2);
+        // showBinSearch(arr1, 3);
+
+        int[] arr2 = { 1, 3, 5, 7, 7, 7, 7, 8, 8, 9, 9 };
+        System.out.println(binSearchX(arr2, 7));
 
     }
 }
