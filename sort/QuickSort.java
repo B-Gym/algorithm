@@ -28,7 +28,7 @@ public class QuickSort {
         if (l < pr)
             quickSort(a, l, pr);
         if (r > pl)
-            quickSort(a, r, pl);
+            quickSort(a, pl, r);
     }
 
     static void swap(int[] a, int idx1, int idx2) {
