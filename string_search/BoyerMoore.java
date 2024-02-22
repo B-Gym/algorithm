@@ -1,6 +1,15 @@
 package string_search;
 
 public class BoyerMoore {
+    public static void main(String[] args) {
+        System.out.println("idx: " + bmMatch("ABCXDEZCABACABAC", "ABAC"));
+
+        System.out.println();
+
+        System.out.println("idx: " + bmMatch("ABCXDEZCABABABAC", "ABAC"));
+
+    }
+
     static int bmMatch(String txt, String pat) {
         int pt;
         int pp;
@@ -23,7 +32,10 @@ public class BoyerMoore {
                 pt--;
             }
             pt += (skip[txt.charAt(pt)] > patLen - pp) ? skip[txt.charAt(pt)] : patLen - pp;
+            System.out.println(pt + ": pt");
+
         }
         return -1;
     }
+
 }
