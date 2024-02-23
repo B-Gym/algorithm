@@ -59,22 +59,20 @@ public class LinkedListTester {
 
         Customer temp = new Customer(3, "kimgoat");
 
-        ptr = list.serach(temp, Customer.NO_ORDER);
+        // ptr = list.serach(temp, Customer.NO_ORDER);
+        ptr = list.serach(temp, (c1, c2) -> {
+            return (c1.no > c2.no) ? 1 : (c1.no < c2.no) ? -1 : 0;
+        });
         if (ptr == null)
             System.out.println("그 번호의 데이터 없음");
         else
             System.out.println("검색 성공: " + ptr);
 
-        Customer temp2 = new Customer(3, "kimgoat");
+        Customer temp2 = new Customer(3, "kim");
 
         // ptr = list.serach(temp2, Customer.NO_NAME);
-        ptr = list.serach(temp2, (o1, o2) -> {
-            if (o1 instanceof Customer && o2 instanceof Customer) {
-                Customer c1 = (Customer) o1;
-                Customer c2 = (Customer) o2;
-                return c1.name.compareTo(c2.name);
-            }
-            return -1;
+        ptr = list.serach(temp2, (c1, c2) -> {
+            return c1.name.compareTo(c2.name);
         });
         if (ptr == null)
             System.out.println("그 이름의 데이터 없음");
