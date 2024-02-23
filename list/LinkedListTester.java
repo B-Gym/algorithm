@@ -3,8 +3,8 @@ package list;
 import java.util.Comparator;
 
 class Customer {
-    private Integer no;
-    private String name;
+    public Integer no;
+    public String name;
 
     Customer(Integer no, String name) {
         this.no = no;
@@ -67,7 +67,15 @@ public class LinkedListTester {
 
         Customer temp2 = new Customer(3, "kimgoat");
 
-        ptr = list.serach(temp2, Customer.NO_NAME);
+        // ptr = list.serach(temp2, Customer.NO_NAME);
+        ptr = list.serach(temp2, (o1, o2) -> {
+            if (o1 instanceof Customer && o2 instanceof Customer) {
+                Customer c1 = (Customer) o1;
+                Customer c2 = (Customer) o2;
+                return c1.name.compareTo(c2.name);
+            }
+            return -1;
+        });
         if (ptr == null)
             System.out.println("그 이름의 데이터 없음");
         else
